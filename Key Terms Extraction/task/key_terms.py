@@ -12,13 +12,11 @@ stopwords_list = stopwords.words('english')
 punct_list = list(string.punctuation)
 #print(punct_list)
 
-def extract_common_words(text, k=5):
+def extract_common_words(story_text, k=5):
     tokens = word_tokenize(story_text)
     lemmas = [lemmatizer.lemmatize(token) for token in tokens]
     filtered_lemmas = [lemma for lemma in lemmas
                        if lemma not in stopwords_list and lemma not in punct_list]
-    #nouns0 = [word for (word, tag) in nltk.pos_tag(filtered_lemmas)
-             #if tag == 'NN']
     nouns = [lemma for lemma in filtered_lemmas
              if nltk.pos_tag([lemma])[0][1] == "NN"]
 
